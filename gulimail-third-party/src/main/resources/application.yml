@@ -1,0 +1,25 @@
+server:
+  port: 30000
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    sentinel:
+        transport:
+            dashboard: localhost:8080
+    alicloud:
+      access-key: LTAI5tCDcBu4W3zbdc2xhTsh
+      secret-key: yiaKh0m56oRBB3h8nVxdGbQ6ZQ75jO
+      oss:
+        endpoint: oss-cn-beijing.aliyuncs.com
+        bucket: gulimai1-hello
+
+  application:
+    name: gulimail-third-party
+
+management:
+    endpoints:
+        web:
+        exposure:
+            include: '*'

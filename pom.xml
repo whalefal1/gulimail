@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.atguigu</groupId>
+    <artifactId>Gulimail</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>Gulimail</name>
+    <description>Gulimail</description>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>gulimail-common</module>
+        <module>gulimail-gateway</module>
+        <module>gulimail-member</module>
+        <module>gulimail-coupon</module>
+        <module>gulimail-order</module>
+        <module>gulimail-product</module>
+        <module>renren-fast</module>
+        <module>gulimail-ware</module>
+        <module>renren-fast</module>
+        <module>gulimail-third-party</module>
+        <module>gulimail-search</module>
+        <module>gulimail-auth-server</module>
+        <module>gulimail-cart</module>
+        <module>gulimail-seckill</module>
+    </modules>
+
+</project>

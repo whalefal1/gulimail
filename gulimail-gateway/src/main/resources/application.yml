@@ -1,0 +1,112 @@
+spring:
+  application:
+    name: gulimail-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    sentinel:
+        transport:
+            dashboard: localhost:8080
+
+    gateway:
+      routes:
+        - id: product_route
+          uri: lb://gulimail-product
+          predicates:
+            - Path=/api/product/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*),/$\{segment}
+
+        - id: coupon_route
+          uri: lb://gulimail-coupon
+          predicates:
+            - Path=/api/coupon/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*),/$\{segment}
+
+        - id: third_party_route
+          uri: lb://gulimail-third-party
+          predicates:
+            - Path=/api/thirdparty/**
+          filters:
+            - RewritePath=/api/thirdparty/(?<segment>/?.*),/$\{segment}
+
+        - id: member_route
+          uri: lb://gulimail-member
+          predicates:
+            - Path=/api/member/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*),/$\{segment}
+
+        - id: ware_route
+          uri: lb://gulimail-ware
+          predicates:
+            - Path=/api/ware/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*),/$\{segment}
+
+        - id: order_route
+          uri: lb://gulimail-order
+          predicates:
+            - Path=/api/order/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*),/$\{segment}
+
+        - id: admin_route
+          uri: lb://renren-fast
+          predicates:
+            - Path=/api/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*), /renren-fast/$\{segment}
+
+        - id: gulimail_host_route
+          uri: lb://gulimail-product
+          predicates:
+            - Host=gulimail.com,item.gulimail.com
+
+        - id: gulimail_search_route
+          uri: lb://gulimail-search
+          predicates:
+            - Host=search.gulimail.com
+
+        - id: gulimail_auth_route
+          uri: lb://gulimail-auth-server
+          predicates:
+            - Host=auth.gulimail.com
+
+        - id: gulimail_cart_route
+          uri: lb://gulimail-cart
+          predicates:
+            - Host=cart.gulimail.com
+
+        - id: gulimail_order_route
+          uri: lb://gulimail-order
+          predicates:
+            - Host=order.gulimail.com
+
+        - id: gulimail_member_route
+          uri: lb://gulimail-member
+          predicates:
+            - Host=member.gulimail.com
+
+        - id: gulimail_seckill_route
+          uri: lb://gulimail-seckill
+          predicates:
+            - Host=seckill.gulimail.com
+            
+            #配置网关映射路径，将localhost:88/api/**映射到localhost:8080/renren-fast/**
+          #        - id: baidu_routes
+          #          uri: https://www.baidu.com
+          #          predicates:
+          #            - Query=url, baidu
+          #
+          #        - id: qq_routes
+          #          uri: https://www.qq.com
+          #          predicates:
+          #            - Query=url, qq
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
